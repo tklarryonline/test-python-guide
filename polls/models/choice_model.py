@@ -7,3 +7,6 @@ class Choice(models.Model):
 
     class Meta:
         app_label = "polls"
+
+    def __unicode__(self):
+        return self.choice_text
