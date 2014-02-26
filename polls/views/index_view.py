@@ -4,7 +4,7 @@ from django.views.generic.base import View
 
 class IndexView(View):
 
-    template = "polls/index.phtml"
+    template = "polls/index.html"
 
     def get(self, request):
         context = {}
