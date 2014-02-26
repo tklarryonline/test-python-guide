@@ -1,6 +1,8 @@
 from django.template.response import TemplateResponse
 from django.views.generic.base import View
 
+from polls.models import Question
+
 
 class IndexView(View):
 
@@ -8,13 +10,6 @@ class IndexView(View):
 
     def get(self, request):
         context = {}
-        context['var1'] = "This is Var 1"
-        context['var2'] = ["This", "Is", "Var", "2", ]
-        context['var3'] = {
-            "part1": "This",
-            "part2": "Is",
-            "part3": "Var",
-            "part4": "3",
-        }
+        context['questions'] = Question.objects.all()
 
         return TemplateResponse(request, self.template, context)
