@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'polls',
     'south',
+    'lettuce.django',
 )
 
 MIDDLEWARE_CLASSES = (

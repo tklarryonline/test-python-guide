@@ -2,6 +2,7 @@ from django.template.response import TemplateResponse
 from django.http.response import HttpResponseRedirect
 from django.views.generic.base import View
 from django.core.urlresolvers import reverse
+from django.shortcuts import get_object_or_404
 
 from polls.models import Question, Choice
 
@@ -12,7 +13,7 @@ class QuestionView(View):
 
     def get(self, request, question_id=None):
         context = {}
-        context['question'] = Question.objects.get(pk=question_id)
+        context['question'] = get_object_or_404(Question, pk=question_id)
         return TemplateResponse(request, self.template, context)
 
     def post(self, request, question_id=None):
