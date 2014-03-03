@@ -55,3 +55,18 @@ class IndexViewTest(unittest.TestCase):
 
         # Checks that the response context contains 5 questions
         self.assertEqual(len(response.context['questions']), 5)
+
+    def test_index_view_with_some_future_questions(self):
+        # Create 6 questions, from past to future
+        # for range -2 to 4, should have 3 future questions
+        for i in range(-2, 4):
+            create_question(question_text="Question %d" % i, days=i)
+
+        # Issues a GET request
+        response = self.client.get('/polls/')
+
+        # Checks that the response is 200 OK
+        self.assertEqual(response.status_code, 200)
+
+        # Checks that the response context contains 3 questions
+        self.assertEqual(len(response.context['questions']), 3)
