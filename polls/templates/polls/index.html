@@ -1,5 +1,6 @@
 {% load i18n %}
 
+{% if question %}
 <div id="questions">
 	{% for question in questions %}
 	<div class="question">
@@ -7,3 +8,6 @@
 	</div>
 	{% endfor %}
 </div>
+{% else %}
+	No question available.
+{% endif %}
