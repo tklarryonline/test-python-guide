@@ -6,13 +6,13 @@ import sure
 @step(u'I have a list of polls')
 def i_have_a_list_of_polls(step):
     from polls.models import Question, Choice
-    import datetime
+    from django.utils import timezone
 
     #create 5 poll question
     for i in range(0, 5):
         question = Question()
         question.question_text = "Question text %s" % i
-        question.pub_date = datetime.datetime.now()
+        question.pub_date = timezone.now()
         question.save()
 
         # create 5 choice for each question
