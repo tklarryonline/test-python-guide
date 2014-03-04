@@ -31,3 +31,13 @@ def i_visit_url(step, url):
 def i_should_see_a_list_of_polls_question(step):
     questions = browser().find_elements_by_css_selector("#questions .question")
     len(questions).should.equal(5)
+
+@step(u'there is no question in the system')
+def there_is_no_question_in_the_system(step):
+    from polls.models import Question
+    Question.objects.all().delete()
+
+@step(u'I should see the text "([^"]*)"')
+def i_should_see_the_text(step, text):
+    body_element = browser().find_element_by_tag_name("body")
+    body_element.text.should.contain(text)

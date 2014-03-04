@@ -7,3 +7,8 @@ Feature: Polls
         Given I have a list of polls
         When I visit "/polls/"
         Then I should see a list of polls question
+
+    Scenario: No polls question
+        Given there is no question in the system
+        When I visit "/polls/"
+        Then I should see the text "No question available."
