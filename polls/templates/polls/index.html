@@ -2,12 +2,24 @@
 
 {% if questions %}
 <div id="questions">
-	{% for question in questions %}
-	<div class="question">
-	  	<a href="{% url 'poll_detail' question.id %}">{{ question.question_text }}</a>
-	</div>
-	{% endfor %}
+    <h1>Recent questions</h1>
+    {% for question in questions %}
+    <div class="question">
+        <a href="{% url 'poll_detail' question.id %}">{{ question.question_text }}</a>
+    </div>
+    {% endfor %}
 </div>
 {% else %}
-	No question available.
+No question available.
+{% endif %}
+
+{% if today_questions %}
+<div id="today_questions">
+    <h1>Today questions</h1>
+    {% for question in today_questions %}
+    <div class="question">
+        <a href="{% url 'poll_detail' question.id %}">{{ question.question_text }}</a>
+    </div>
+    {% endfor %}
+</div>
 {% endif %}
