@@ -1,5 +1,6 @@
+{% extends "base.html" %}
 {% load i18n %}
-
+{% block content %}
 {% trans "Poll detail" %}
 
 <form method="POST">
@@ -17,3 +18,4 @@
   </ul>
   <button type="submit">Submit</button>
 </form>
+{% endblock %}
