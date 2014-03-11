@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/polls/style.css">
+        <script type="text/javascript" src="{{STATIC_URL}}js/polls/script.js"></script>
+    </head>
+    <body>
+        {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
