@@ -61,16 +61,28 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'myproject',
-        'HOST': 'localhost',
-        'PORT': 3306,
-        'USER': 'root',  # you should change this
-        'PASSWORD': 'password',  # and also this
-    }
+    'default': dj_database_url.config(),
 }
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
+STATIC_ROOT = 'static'
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.6/howto/static-files/
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -88,12 +100,6 @@ USE_TZ = True
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'conf', 'locale'),
 )
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
-
-STATIC_URL = '/static/'
 
 try:
     from local_settings import *  # override current settings with a local settings
